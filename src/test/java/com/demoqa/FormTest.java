@@ -1,20 +1,17 @@
 package com.demoqa;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.remote.tracing.EventAttribute.setValue;
 
 public class FormTest extends TestBase {
 
 
     @Test
     void FormTest(){
-        //Configuration.holdBrowserOpen = true;
         open("/automation-practice-form");
 
         Selenide.executeJavaScript("$('#fixedban').remove()");
@@ -24,7 +21,7 @@ public class FormTest extends TestBase {
         $("#firstName").setValue("John"); //first name
         $("#lastName").setValue("Doe");// last name
         $("#userEmail").setValue("test@email.com"); // email address
-        $(byText("Female")).click(); //or $("#gender-radio-2").parent().click(); // gender radio button
+        $("#gender-radio-2").parent().click(); // gender radio button
         $("#userNumber").setValue("1234567890"); // phone number
 
         //date of birth
@@ -47,7 +44,7 @@ public class FormTest extends TestBase {
         $(byText("Submit")).scrollTo();
         $("#submit").click();
 
-        //$("#output").shouldHave(text("John"), text("Doe"), text("test@email.com"), text("1234567890"), text("John"), text("test@email.com"), text("Nowhere"), text("Here"));
+        $(".table").shouldHave(text("John"), text("Doe"), text("test@email.com"), text("1234567890"), text("Female"), text("18 February,1993"), text("English"), text("Jean Marot street"));
 
     }
 }
