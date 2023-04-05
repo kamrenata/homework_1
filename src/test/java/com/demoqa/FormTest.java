@@ -14,8 +14,8 @@ public class FormTest extends TestBase {
     void FormTest(){
         open("/automation-practice-form");
 
-        Selenide.executeJavaScript("$('#fixedban').remove()");
-        Selenide.executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $(byText("Submit")).scrollTo();
 
         $("#firstName").setValue("John"); //first name
@@ -41,7 +41,6 @@ public class FormTest extends TestBase {
         $("#react-select-3-option-1").click(); //select state
         $(byText("Select City")).click(); // city drop-down
         $("#react-select-4-option-0").click(); //select city
-        $(byText("Submit")).scrollTo();
         $("#submit").click();
 
         $(".table").shouldHave(text("John"), text("Doe"), text("test@email.com"), text("1234567890"), text("Female"), text("18 February,1993"), text("English"), text("Jean Marot street"));
