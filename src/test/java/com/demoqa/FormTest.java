@@ -10,7 +10,7 @@ public class FormTest extends TestBase {
 
 
     @Test
-    void FormTest(){
+    void formTest(){
         open("/automation-practice-form");
 
         executeJavaScript("$('#fixedban').remove()");
