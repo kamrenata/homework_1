@@ -1,6 +1,5 @@
 package com.demoqa;
 
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -43,7 +42,8 @@ public class FormTest extends TestBase {
         $("#react-select-4-option-0").click(); //select city
         $("#submit").click();
 
-        $(".table").shouldHave(text("John"), text("Doe"), text("test@email.com"), text("1234567890"), text("Female"), text("18 February,1993"), text("English"), text("Jean Marot street"));
+        $(".table").shouldHave(text("John"), text("Doe"), text("test@email.com"), text("1234567890"),
+                text("Female"), text("18 February,1993"), text("English"), text("Jean Marot street"));
 
     }
 }
