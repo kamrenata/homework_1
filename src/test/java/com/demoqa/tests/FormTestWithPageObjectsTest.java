@@ -5,26 +5,26 @@ import org.junit.jupiter.api.Test;
 
 public class FormTestWithPageObjectsTest extends TestBase {
 
+
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void successfulRegistrationTest() {
 
-        registrationPage.openPage()
-                        .titleCheck()
+        registrationPage.openPage("Student Registration Form")
                         .hideBanner()
                         .setFirstName("John")
-                        .setLastName("Doe")
+                        .setSurname("Doe")
                         .setEmail("test@test.com")
                         .setGender("Other")
                         .setUserNumber("1234567890")
                         .setBirthDate("18", "July", "2000")
                         .setSubject("English")
-                        .setHobby()
+                        .setHobby("Sports")
                         .picture()
                         .setAddress("Jean Marot street")
-                        .setState()
-                        .setCity()
+                        .setState("Uttar Pradesh")
+                        .setCity("Agra")
                         .submit();
 
 

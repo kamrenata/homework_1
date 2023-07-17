@@ -1,23 +1,23 @@
 package com.demoqa.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.demoqa.pages.components.CalendarComponent;
 import com.demoqa.pages.components.ResultsModal;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
+
 public class RegistrationPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
-
     ResultsModal resultsModal = new ResultsModal();
 
     //Selenide elements
     SelenideElement
-            formHeaderText = $(".practice-form-wrapper"),
+            header = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
@@ -25,30 +25,23 @@ public class RegistrationPage {
             userNumber = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
             subjectInput = $("#subjectsInput"),
-            hobbyRadioButton = $("#hobbies-checkbox-1"),
+            hobbyInput = $("#hobbiesWrapper"),
             uploadPicture = $("#uploadPicture"),
             address = $("#currentAddress"),
-            state = $(byText("Select State")),
-            city = $(byText("Select City")),
+            state = $("#state"),
+            city = $("#city"),
             submitButton = $("#submit");
 
     //Actions
-    public RegistrationPage openPage() {
+    public RegistrationPage openPage(String value) {
         open("/automation-practice-form");
-
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        header.shouldHave(Condition.text(value));
 
         return this;
     }
     public RegistrationPage hideBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-
-        return this;
-    }
-    public RegistrationPage titleCheck() {
-        formHeaderText.shouldHave(text("Student Registration Form"));
 
         return this;
     }
@@ -59,7 +52,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setLastName(String value) {
+    public RegistrationPage setSurname(String value) {
         lastNameInput.setValue(value);
 
         return this;
@@ -95,8 +88,8 @@ public class RegistrationPage {
         return this;
 
     }
-    public RegistrationPage setHobby() {
-        hobbyRadioButton.parent().click();
+    public RegistrationPage setHobby(String value) {
+            hobbyInput.$(byText(value)).click();
 
         return this;
 
@@ -113,20 +106,21 @@ public class RegistrationPage {
         return this;
 
     }
-    public RegistrationPage setState() {
+    public RegistrationPage setState(String value) {
         state.click();
-        $("#react-select-3-option-1").click();
+        $(byText(value)).click();
 
         return this;
 
     }
-    public RegistrationPage setCity() {
+
+    public RegistrationPage setCity(String value) {
         city.click();
-        $("#react-select-4-option-0").click();
+        $(byText(value)).click();
 
         return this;
-
     }
+
     public RegistrationPage submit() {
         submitButton.click();
 
